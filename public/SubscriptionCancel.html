@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #008C99 0%, #00A8B5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cancel-icon {
+            width: 80px;
+            height: 80px;
+            background: #EF4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .button {
+            background: #008C99;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .button:hover {
+            background: #007080;
+        }
+        
+        .loading {
+            color: #008C99;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #008C99;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cancel-icon">✕</div>
+        <h1>Payment Cancelled</h1>
+        <p>Your payment was cancelled. You can try again anytime from your subscription settings.</p>
+        
+        <button class="button" onclick="redirectToApp()">Return to App</button>
+        
+        <div class="loading">
+            <span class="spinner"></span>
+            <span id="countdown">Redirecting in 3 seconds...</span>
+        </div>
+    </div>
+
+    <script>
+        let seconds = 2;
+        
+        // Check if opened from mobile app
+        const urlParams = new URLSearchParams(window.location.search);
+        const isMobile = urlParams.get('mobile') === 'true';
+        
+        function closeWindow() {
+            if (isMobile) {
+                // For in-app browser, just close
+                window.close();
+            } else {
+                // For web, redirect
+                window.location.href = 'atc://subscription/cancel';
+            }
+        }
+        
+        // Update countdown
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                countdownEl.textContent = `Closing in ${seconds} seconds...`;
+            }
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                closeWindow();
+            }
+        }, 1000);
+        
+        // For mobile, close quickly
+        if (isMobile) {
+            window.addEventListener('load', () => {
+                console.log("📱 Payment cancelled. Closing browser...");
+                setTimeout(closeWindow, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

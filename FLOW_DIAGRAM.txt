@@ -1,0 +1,341 @@
+╔════════════════════════════════════════════════════════════════════════════════════════╗
+║                    COMPLETE ATC (ACTIVE TRADER COMMUNITY) FLOW                          ║
+╚════════════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: USER DISCOVERY - HOW YOU SEE EACH OTHER                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+METHOD A: SKILL-BASED SUGGESTIONS (Automatic)
+═════════════════════════════════════════════
+
+User A Profile:                          User B Profile:
+├─ Skills Offered:                       ├─ Skills Offered:
+│  • Web Development                     │  • Graphic Design
+│  • UI Design                           │  • Photography
+└─ Skills Wanted:                        └─ Skills Wanted:
+   • Graphic Design                         • Web Development
+   • Video Editing
+
+                    ↓ MATCH FOUND ↓
+        User B offers what User A wants
+        User B wants what User A offers
+
+Result: User A sees User B as SUGGESTION on Home screen
+
+
+METHOD B: MANUAL SEARCH (User-Initiated)
+═════════════════════════════════════════
+
+User enters: "Ali" or "ali@example.com"
+                    ↓
+        Backend searches database
+                    ↓
+    Returns all users matching search
+                    ↓
+    Display results with profiles
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: VIEWING PROFILE                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User clicks on suggestion or search result
+                    ↓
+        OtherProfile screen opens
+                    ↓
+    Shows: Name, Email, Picture, Skills, Rating, Reviews
+                    ↓
+    Action Buttons: [Add Friend] [Message] [Propose Barter]
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: SENDING FRIEND REQUEST                                                          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User A clicks "Add Friend"
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Backend Checks:                     │
+    │ ✓ Has subscription?                 │
+    │ ✓ Has 100+ credits?                 │
+    │ ✓ No existing request?              │
+    └─────────────────────────────────────┘
+                    ↓
+            All checks pass?
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Actions:                            │
+    │ • Deduct 100 credits from User A    │
+    │ • Create FriendRequest (pending)    │
+    │ • Store in database                 │
+    └─────────────────────────────────────┘
+                    ↓
+        FriendRequest stored:
+        {
+          from: User A ID,
+          to: User B ID,
+          status: "pending"
+        }
+                    ↓
+        User B sees notification when they log in
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 4: ACCEPTING FRIEND REQUEST                                                        │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User B sees notification → Clicks "Accept"
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Backend Checks:                     │
+    │ ✓ Request exists?                   │
+    │ ✓ Is pending?                       │
+    │ ✓ Sender has 10+ credits?           │
+    └─────────────────────────────────────┘
+                    ↓
+            All checks pass?
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Actions:                            │
+    │ • Deduct 10 credits from User A     │
+    │ • Update status to "accepted"       │
+    │ • Add to friends lists              │
+    └─────────────────────────────────────┘
+                    ↓
+        FriendRequest updated:
+        {
+          from: User A ID,
+          to: User B ID,
+          status: "accepted"  ← Changed
+        }
+                    ↓
+        Both users are now FRIENDS
+        Can now propose barters
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 5: PROPOSING A BARTER                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User A clicks "Propose Barter"
+                    ↓
+    ProposeBarter screen opens
+                    ↓
+    User A selects:
+    ├─ I offer: Web Development
+    └─ I want: Graphic Design
+                    ↓
+    User A clicks "Propose"
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Backend Checks:                     │
+    │ ✓ Friend request accepted?          │
+    │ ✓ No barter exists?                 │
+    │ ✓ Has 10+ credits?                  │
+    └─────────────────────────────────────┘
+                    ↓
+            All checks pass?
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Actions:                            │
+    │ • Deduct 10 credits from User A     │
+    │ • Create Barter (proposed)          │
+    │ • Store in database                 │
+    └─────────────────────────────────────┘
+                    ↓
+        Barter stored:
+        {
+          requester: User A ID,
+          accepter: User B ID,
+          offered_skill: "Web Development",
+          wanted_skill: "Graphic Design",
+          status: "proposed"
+        }
+                    ↓
+        User B sees barter proposal notification
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 6: ACCEPTING A BARTER                                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User B sees proposal → Clicks "Accept"
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Backend Checks:                     │
+    │ ✓ Barter exists?                    │
+    │ ✓ Is proposed?                      │
+    │ ✓ Has 10+ credits?                  │
+    └─────────────────────────────────────┘
+                    ↓
+            All checks pass?
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Actions:                            │
+    │ • Deduct 10 credits from User B     │
+    │ • Update status to "accepted"       │
+    │ • Enable messaging                  │
+    └─────────────────────────────────────┘
+                    ↓
+        Barter updated:
+        {
+          requester: User A ID,
+          accepter: User B ID,
+          offered_skill: "Web Development",
+          wanted_skill: "Graphic Design",
+          status: "accepted"  ← Changed
+        }
+                    ↓
+        Trade appears in "Active Trades" → "Ongoing" tab
+        Both users can now message each other
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 7: VIEWING ACTIVE TRADES                                                           │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+Home Screen or ActiveTrades Screen
+                    ↓
+    ┌──────────────────────────────────────────┐
+    │ Tabs:                                    │
+    │ [Ongoing] [Completed] [Pending]          │
+    └──────────────────────────────────────────┘
+                    ↓
+    Each tab shows barters with that status:
+    
+    ONGOING (status: "accepted")
+    ├─ User B's profile picture
+    ├─ Name: Ali
+    ├─ Rating: ⭐⭐⭐⭐⭐
+    ├─ I offer: Web Development
+    ├─ I want: Graphic Design
+    └─ Buttons: [Chat] [View Trade]
+    
+    PENDING (status: "proposed")
+    ├─ Waiting for other user to accept
+    
+    COMPLETED (status: "completed")
+    ├─ Trade finished
+    ├─ Reviews shown
+    └─ Button: [Write Review] (if not reviewed yet)
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ STEP 8: COMPLETING TRADE & LEAVING REVIEW                                               │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+User A clicks "Write Review" on completed trade
+                    ↓
+    Rating screen opens
+                    ↓
+    User A:
+    ├─ Rates User B (1-5 stars)
+    ├─ Writes comment
+    └─ Clicks "Submit"
+                    ↓
+    ┌─────────────────────────────────────┐
+    │ Backend Actions:                    │
+    │ • Store User A's review             │
+    │ • Update Barter status to complete  │
+    │ • Recalculate User B's rating       │
+    └─────────────────────────────────────┘
+                    ↓
+        Barter updated:
+        {
+          status: "completed",
+          requester_review: {
+            rating: 5,
+            comment: "Great work!"
+          }
+        }
+                    ↓
+        Trade moves to "Completed" tab
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ CREDIT COST BREAKDOWN                                                                    │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+Action                          Cost    Paid By         When
+─────────────────────────────────────────────────────────────────────
+Send Friend Request             100     Requester       Immediately
+Accept Friend Request           10      Requester       When accepted
+Propose Barter                  10      Proposer        Immediately
+Accept Barter                   10      Accepter        When accepted
+Complete Trade                  0       N/A             N/A
+Leave Review                    0       N/A             N/A
+─────────────────────────────────────────────────────────────────────
+TOTAL for complete trade:       130     Both users      Throughout
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ COMPLETE EXAMPLE SCENARIO                                                                │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+SYED (User A)                          ALI (User B)
+Skills Offered:                        Skills Offered:
+• Web Development                      • Graphic Design
+• UI Design                            • Photography
+
+Skills Wanted:                         Skills Wanted:
+• Graphic Design                       • Web Development
+• Video Editing                        • UI Design
+
+Timeline:
+─────────────────────────────────────────────────────────────────────
+
+1. Syed logs in
+   └─ Home screen shows Ali as suggestion
+      (Ali offers Graphic Design which Syed wants)
+
+2. Syed clicks on Ali's profile
+   └─ Sees Ali's skills and rating
+
+3. Syed clicks "Add Friend"
+   └─ Syed: -100 credits
+   └─ Friend request sent to Ali
+
+4. Ali logs in
+   └─ Sees friend request from Syed
+   └─ Clicks "Accept"
+   └─ Syed: -10 credits (sender pays)
+   └─ Both are now friends
+
+5. Syed clicks "Propose Barter"
+   ├─ Offers: Web Development
+   ├─ Wants: Graphic Design
+   └─ Syed: -10 credits
+
+6. Ali sees barter proposal
+   └─ Clicks "Accept"
+   └─ Ali: -10 credits
+
+7. Both see trade in "Active Trades" → "Ongoing"
+   └─ Can now message each other
+
+8. After completing work:
+   └─ Ali rates Syed (5 stars)
+   └─ Syed rates Ali (5 stars)
+
+9. Trade moves to "Completed"
+
+FINAL COST:
+Syed: 100 + 10 + 10 = 120 credits
+Ali: 10 credits
+
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ KEY POINTS TO REMEMBER                                                                   │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+✅ Discovery is based on COMPLEMENTARY SKILLS (what you offer vs what others want)
+✅ You can also SEARCH manually by name or email
+✅ Friend request REQUIRED before proposing barters
+✅ Each action costs CREDITS to prevent spam
+✅ Messaging only available after barter ACCEPTED
+✅ Reviews left after trade COMPLETED
+✅ All actions work ASYNCHRONOUSLY (users don't need to be online)
+✅ Ratings calculated from all completed trades
+✅ System prevents duplicate requests and barters
+

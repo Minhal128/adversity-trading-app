@@ -1,0 +1,42 @@
+# Ignore node_modules (EAS installs fresh)
+node_modules
+
+# Ignore iOS/Android native projects (EAS runs prebuild)
+ios
+android
+
+# Ignore build artifacts
+.expo
+dist
+build
+web-build
+Builds
+.git
+*.app
+*.ipa
+*.apk
+*.aab
+
+# OS files
+.DS_Store
+*.swp
+Thumbs.db
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode
+.idea
+*.log
+
+# Documentation (not needed for build)
+*.md
+FLOW_DIAGRAM.txt
+
+# Other large/unnecessary files
+summit-frontend
+.kiro
