@@ -1,0 +1,152 @@
+{
+  "expo": {
+    "name": "Adversity Trading",
+    "slug": "Atc",
+    "version": "1.0.0",
+    "scheme": "atc",
+    "web": {
+      "favicon": "./assets/logo1.png"
+    },
+    "experiments": {
+      "tsconfigPaths": true
+    },
+    "plugins": [
+      "expo-dev-client",
+      "expo-asset",
+      "expo-font",
+      "expo-apple-authentication",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "This app needs access to your photo library to allow you to upload profile pictures and share images."
+        }
+      ],
+      [
+        "@stream-io/video-react-native-sdk",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera for video calls",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for voice and video calls",
+          "enableNonRingingPushNotifications": false,
+          "enableScreenshare": false
+        }
+      ],
+      "@config-plugins/react-native-webrtc",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 24,
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
+            "enableProguardInReleaseBuilds": false,
+            "enableShrinkResourcesInReleaseBuilds": false,
+            "useLegacyPackaging": true,
+            "extraProguardRules": "-keep class com.facebook.hermes.unicode.** { *; }\n-keep class com.facebook.jni.** { *; }\n-keep class com.facebook.react.** { *; }\n-keep class expo.modules.** { *; }\n-keep class io.getstream.** { *; }\n-keep class com.clerk.** { *; }\n-keep class com.google.firebase.** { *; }\n-keep class com.google.android.gms.** { *; }\n-dontwarn okhttp3.**\n-dontwarn okio.**\n-keep class okhttp3.** { *; }\n-keep class okio.** { *; }\n-keep class kotlin.** { *; }\n-keep class kotlinx.** { *; }\n-keepattributes *Annotation*\n-keepattributes Signature",
+            "enableMinifyInReleaseBuilds": false
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      "expo-secure-store",
+      "expo-notifications",
+      "expo-web-browser",
+      "./plugins/withRemoveAudioBackgroundMode"
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logo1.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFAF5"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.booali.Atc",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "usesAppleSignIn": true,
+      "associatedDomains": ["applinks:stingray-app-priwf.ondigitalocean.app"],
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsLocalNetworking": true
+        },
+        "NSCameraUsageDescription": "Adversity Trading needs access to your camera for video calls with other traders.",
+        "NSMicrophoneUsageDescription": "Adversity Trading needs access to your microphone for voice and video calls with other traders.",
+        "NSPhotoLibraryUsageDescription": "Adversity Trading needs access to your photo library to allow you to upload profile pictures and share images in chat.",
+        "NSPhotoLibraryAddUsageDescription": "Adversity Trading needs permission to save photos to your library.",
+        "UIBackgroundModes": ["fetch", "remote-notification"],
+        "BGTaskSchedulerPermittedIdentifiers": ["com.booali.Atc.refresh"],
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "atc",
+              "com.googleusercontent.apps.317942318934-vmrlu72fd9qntuv72ig2g81k365u71ts"
+            ]
+          }
+        ],
+        "SKAdNetworkItems": [
+          {
+            "SKAdNetworkIdentifier": "com.apple.skadnetwork"
+          }
+        ],
+        "com.apple.developer.in-app-payments": ["merchant.com.booali.Atc"]
+      },
+      "bitcode": false,
+      "appleTeamId": "7M383KT75Y"
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFAF5"
+      },
+      "splash": {
+        "image": "./assets/logo1.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFAF5"
+      },
+      "package": "com.booali.Atc",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS",
+        "ACCESS_NETWORK_STATE",
+        "CHANGE_NETWORK_STATE",
+        "INTERNET",
+        "SYSTEM_ALERT_WINDOW",
+        "WAKE_LOCK",
+        "BLUETOOTH",
+        "BLUETOOTH_CONNECT",
+        "BLUETOOTH_ADMIN"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "atc"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "extra": {
+      "BACKEND_URI": "https://stingray-app-priwf.ondigitalocean.app",
+      "eas": {
+        "projectId": "558bfea9-b275-4b59-8099-3ef01956b1ba"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/558bfea9-b275-4b59-8099-3ef01956b1ba"
+    }
+  }
+}

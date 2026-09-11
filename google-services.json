@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "317942318934",
+    "project_id": "adversity-trading",
+    "storage_bucket": "adversity-trading.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317942318934:android:a87c772a434e24ebbb78f7",
+        "android_client_info": {
+          "package_name": "com.booali.Atc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317942318934-dkl14tdpdh4o24fq8bo13olrku9krmou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.booali.Atc",
+            "certificate_hash": "7d04827afa17f68f75692af8fbe501916c9eff45"
+          }
+        },
+        {
+          "client_id": "317942318934-s1897r83vs6ups6jbaf5nn7d8jkt1uul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsoI9uKbnTsUXN2dNunbz8P3ew7efTtAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317942318934-s1897r83vs6ups6jbaf5nn7d8jkt1uul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
