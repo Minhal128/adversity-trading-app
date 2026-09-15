@@ -23,6 +23,10 @@
     },
     "preview": {
       "distribution": "internal",
+      "channel": "main",
+      "android": {
+        "buildType": "apk"
+      },
       "env": {
         "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
         "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "$EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID",

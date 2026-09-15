@@ -141,12 +141,13 @@
     "extra": {
       "BACKEND_URI": "https://stingray-app-priwf.ondigitalocean.app",
       "eas": {
-        "projectId": "558bfea9-b275-4b59-8099-3ef01956b1ba"
+        "projectId": "3b35ad12-80e6-42de-ac07-c1ebf4a96cf5"
       }
     },
     "runtimeVersion": "1.0.0",
+    "owner": "minhal786",
     "updates": {
-      "url": "https://u.expo.dev/558bfea9-b275-4b59-8099-3ef01956b1ba"
+      "url": "https://u.expo.dev/3b35ad12-80e6-42de-ac07-c1ebf4a96cf5"
     }
   }
 }
